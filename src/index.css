@@ -1,0 +1,113 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.primary-font{
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.secondary-font{
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+}
+
+/* for button */
+/* ---------------- Flower Button CSS for React ---------------- */
+.btn {
+  height: 3.5em; 
+  max-width:100%;       /* compact size */
+         /* compact size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;  /* soft edges */
+  color: #1290d8;       /* logo color */
+  transition: all 0.3s ease;
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: 16px;
+  z-index: 1;
+  color: #1581BF; /* text matches logo color */
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.7);
+  transition: all 0.5s ease;
+}
+
+.flower {
+  display: grid;
+  grid-template-columns: 0.9em 0.9em;
+  position: absolute;
+  transition: grid-template-columns 0.8s ease;
+}
+
+.flower1 { top: -10px; left: -10px; transform: rotate(5deg);}
+.flower2 { bottom: -4px; left: 6px; transform: rotate(35deg);}
+.flower3 { bottom: -10px; transform: rotate(0deg);}
+.flower4 { top: -10px; transform: rotate(15deg);}
+.flower5 { right: 8px; top: -2px; transform: rotate(25deg);}
+.flower6 { right: -10px; bottom: -10px; transform: rotate(30deg);}
+
+.petal {
+  height: 0.9em;
+  width: 0.9em;
+  border-radius: 40% 70% / 7% 90%;
+  background: linear-gradient(#1581BF, #00B7B5); /* logo gradient */
+  z-index: 0;
+  transition: width 0.8s ease, height 0.8s ease;
+}
+
+.two { transform: rotate(90deg);}
+.three { transform: rotate(270deg);}
+.four { transform: rotate(180deg);}
+
+/* Hover effects */
+.btn:hover .petal {
+  background: linear-gradient(#0761d7, #00b7b5);
+}
+
+.btn:hover .flower {
+  grid-template-columns: 1.3em 1.3em;
+}
+
+.btn:hover .flower .petal {
+  width: 1.3em;
+  height: 1.3em;
+}
+
+.btn:hover .text {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.btn:hover div.flower1 { animation: 15s linear infinite rotateFlower1; }
+.btn:hover div.flower2 { animation: 13s linear 1s infinite rotateFlower2; }
+.btn:hover div.flower3 { animation: 16s linear 1s infinite rotateFlower3; }
+.btn:hover div.flower4 { animation: 17s linear 1s infinite rotateFlower4; }
+.btn:hover div.flower5 { animation: 20s linear 1s infinite rotateFlower5; }
+.btn:hover div.flower6 { animation: 15s linear 1s infinite rotateFlower6; }
+
+/* Flower rotate keyframes */
+@keyframes rotateFlower1 { 0% {transform: rotate(5deg);} 100% {transform: rotate(365deg);} }
+@keyframes rotateFlower2 { 0% {transform: rotate(35deg);} 100% {transform: rotate(-325deg);} }
+@keyframes rotateFlower3 { 0% {transform: rotate(0deg);} 100% {transform: rotate(360deg);} }
+@keyframes rotateFlower4 { 0% {transform: rotate(15deg);} 100% {transform: rotate(375deg);} }
+@keyframes rotateFlower5 { 0% {transform: rotate(25deg);} 100% {transform: rotate(-335deg);} }
+@keyframes rotateFlower6 { 0% {transform: rotate(30deg);} 100% {transform: rotate(390deg);} }
