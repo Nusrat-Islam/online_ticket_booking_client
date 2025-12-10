@@ -1,49 +1,101 @@
-import { Link } from 'react-router'
+import { Link } from "react-router";
+import { ArrowRight, Plane } from "lucide-react";
+import React from "react";
 
-const Card = () => {
+const Card = ({ ticket }) => {
   return (
-    <Link
-      to={`/plant/1`}
-      className='col-span-1 cursor-pointer group shadow-xl p-3 rounded-xl'
-    >
-      <div className='flex flex-col gap-2 w-full'>
-        <div
-          className='
-              aspect-square 
-              w-full 
-              relative 
-              overflow-hidden 
-              rounded-xl
-            '
-        >
+    <div className="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-lg shadow-blue-400 border overflow-hidden p-4">
+
+      {/* CARD CONTENT */}
+      <div className="flex flex-col md:flex-row gap-6">
+
+        {/* LEFT SECTION */}
+        <div className="md:w-3/4 flex gap-5 p-5 relative bg-[#F5F9FF] rounded-xl">
+
+          {/* Ticket Image */}
           <img
-            className='
-                object-cover 
-                h-full 
-                w-full 
-                group-hover:scale-110 
-                transition
-              '
-            src='https://i.ibb.co.com/rMHmQP2/money-plant-in-feng-shui-brings-luck.jpg'
-            alt='Plant Image'
+            src={ticket.image}
+            alt="ticket"
+            className="w-36 h-36 object-cover rounded-lg border"
           />
-          <div
-            className='
-              absolute
-              top-3
-              right-3
-            '
-          ></div>
+
+          <div className="flex flex-col justify-between w-full">
+
+            {/* Ticket Title */}
+            <h2 className="text-xl font-bold text-gray-900">{ticket.title}</h2>
+
+            {/* Route */}
+            <p className="text-gray-700 flex items-center gap-2 mt-2">
+              <span className="font-semibold">{ticket.from}</span>
+              <ArrowRight size={18} />
+              <span className="font-semibold">{ticket.to}</span>
+            </p>
+
+            {/* Transport Type */}
+            <p className="text-sm text-gray-500 flex items-center gap-1 mt-2">
+              <Plane size={20} /> {ticket.transport}
+            </p>
+
+            {/* Perks */}
+            <div className="flex flex-wrap gap-2 mt-2">
+              Perks:
+              {ticket.perks?.map((perk, idx) => (
+                <span
+                  key={idx}
+                  className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full"
+                >
+                 {perk}
+                </span>
+              ))}
+            </div>
+
+            {/* Vertical dashed divider */}
+            <div className="absolute -right-6 top-5 bottom-5 w-[2px] border-r-2 border-dashed border-blue-300"></div>
+          </div>
         </div>
-        <div className='font-semibold text-lg'>Money Plant</div>
-        <div className='font-semibold text-lg'>Category: Indoor</div>
-        <div className='font-semibold text-lg'>Quantity: 10</div>
-        <div className='flex flex-row items-center gap-1'>
-          <div className='font-semibold'> Price: 15$</div>
+
+        {/* RIGHT SECTION */}
+        <div className="md:w-3/9 p-4 bg-[#EBF3FF] flex flex-col justify-between rounded-xl">
+
+          {/* Price & Quantity */}
+          <div>
+            <p className="text-sm text-gray-500">Price (per unit)</p>
+            <p className="text-2xl font-bold text-blue-700">BDT {ticket.price}</p>
+
+            <p className="text-sm text-gray-500 mt-2">Ticket Quantity</p>
+            <p className="text-lg font-semibold">{ticket.quantity}</p>
+          </div>
+
+          {/* Departure */}
+          <div className="mt-1">
+            <p className="text-sm text-gray-500">Departure</p>
+            <p className="font-semibold">{ticket.date} – {ticket.time}</p>
+          </div>
+
         </div>
       </div>
-    </Link>
-  )
-}
 
-export default Card
+      {/* FULL-WIDTH BUTTON */}
+     
+       <Link to={`/ticket/${ticket._id}`} className="btn block w-full text-center  text-white py-3 rounded-lg font-semibold ">
+  <div className="wrapper">
+    <div className="flower flower1"><div className="petal"></div><div className="petal two"></div></div>
+    <div className="flower flower2"><div className="petal"></div><div className="petal three"></div></div>
+    <div className="flower flower3"><div className="petal"></div><div className="petal four"></div></div>
+    <div className="flower flower4"><div className="petal"></div><div className="petal two"></div></div>
+    <div className="flower flower5"><div className="petal"></div><div className="petal three"></div></div>
+    <div className="flower flower6"><div className="petal"></div><div className="petal four"></div></div>
+    <span className="text text-xl">See Details</span>
+  </div>
+</Link>
+    </div>
+  );
+};
+
+export default Card;
+
+
+
+
+
+
