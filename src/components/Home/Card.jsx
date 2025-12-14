@@ -2,6 +2,9 @@ import { Link } from "react-router";
 import { ArrowRight, Plane } from "lucide-react";
 import React from "react";
 
+
+
+
 const Card = ({ ticket }) => {
   return (
     <div className="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-lg shadow-blue-400 border overflow-hidden p-4">
@@ -60,7 +63,7 @@ const Card = ({ ticket }) => {
           {/* Price & Quantity */}
           <div>
             <p className="text-sm text-gray-500">Price (per unit)</p>
-            <p className="text-2xl font-bold text-blue-700">BDT {ticket.price}</p>
+            <p className="text-2xl font-bold text-blue-700">USD {ticket.price}</p>
 
             <p className="text-sm text-gray-500 mt-2">Ticket Quantity</p>
             <p className="text-lg font-semibold">{ticket.quantity}</p>

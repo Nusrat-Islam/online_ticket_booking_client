@@ -1,8 +1,10 @@
 
+import AdvertisementSection from '../../components/Home/AdvertisementSection'
 import Banner from '../../components/Home/Banner'
 import FlightDeals from '../../components/Home/FlightDeals'
+import LatestTickets from '../../components/Home/latestTickets'
 
-import Tickets from '../../components/Home/Tickets'
+
 import WhyChooseTicketBari from '../../components/Home/WhyChooseTicketBari'
 
 const Home = () => {
@@ -10,6 +12,8 @@ const Home = () => {
     <div>
        <Banner></Banner>
       {/* More components */}
+      <AdvertisementSection></AdvertisementSection>
+      <LatestTickets></LatestTickets>
       <FlightDeals></FlightDeals>
       <WhyChooseTicketBari></WhyChooseTicketBari>
      

@@ -4,7 +4,7 @@ import useAuth from '../../hooks/useAuth'
 import { toast } from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
 
-import { imageUpload } from '../../utils'
+import { imageUpload, saveOrUpdateUser } from '../../utils'
 
 const SignUp = () => {
   const { createUser, updateUserProfile, signInWithGoogle, loading } = useAuth()
@@ -51,7 +51,9 @@ if (!imageFile) {
 
       //2. User Registration
       const result = await createUser(email, password)
-
+  
+      //user
+      await saveOrUpdateUser({name, email, image: imageURL})
       //3. Save username & profile photo
       await updateUserProfile(
         name,
@@ -89,15 +91,22 @@ if (!imageFile) {
 
   // Handle Google Signin
 
-  const handleGoogleSignIn = () => {
-   signInWithGoogle()
-      .then(result => {
-        toast.success(result.user)
-        navigate('/');
-      })
-      .catch((error) => {
-        toast.error(error)
-      })
+  const handleGoogleSignIn = async() => {
+    try{
+   const {user} = await signInWithGoogle()
+
+   await saveOrUpdateUser({ 
+    name : user?.displayName,
+     emai: user?.email,
+     image:user?.photoURL})
+
+
+       navigate(from, {replace: true})
+        toast.success('Signup successfull')
+       
+    }catch(error) {
+        toast.error(error?.message)
+  }
   }
   return (
     <div className='flex justify-center items-center min-h-screen bg-white'>

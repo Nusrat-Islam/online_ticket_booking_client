@@ -27,9 +27,9 @@ const TicketDetails = () => {
     },
   });
 
-  // ======================
+
   // Countdown Timer
-  // ======================
+  
   useEffect(() => {
     if (!ticket) return;
 
@@ -65,6 +65,8 @@ const TicketDetails = () => {
   // ======================
   // Booking Submit Handler
   // ======================
+
+  console.log(ticket)
 const handleBookingSubmit = async (e) => {
   e.preventDefault();
 
@@ -83,7 +85,10 @@ const handleBookingSubmit = async (e) => {
   const departure = `${ticket.date} ${ticket.time}`;
 
   const bookingData = {
-    userEmail: user.email,
+    
+    customerEmail: user.email,
+    customerName:user.displayName,
+    customerImage:user?.photoURL,
     flightId: ticket._id,
     title: ticket.title,
     image: ticket.image,
@@ -97,6 +102,9 @@ const handleBookingSubmit = async (e) => {
     departure,
     status: "Pending",
     bookedAt: new Date().toISOString(),
+    vendorName: ticket.vendorName,
+    vendorEmail: ticket.vendorEmail,
+    vendorImage: ticket.vendorImage,
   };
 
   try {

@@ -4,18 +4,25 @@ import Login from '../pages/Login/Login'
 import SignUp from '../pages/SignUp/SignUp'
 import PrivateRoute from './PrivateRoute'
 import DashboardLayout from '../layouts/DashboardLayout'
-import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
+
 import Profile from '../pages/Dashboard/Common/Profile'
 
 import MainLayout from '../layouts/MainLayout'
-import MyInventory from '../pages/Dashboard/Seller/MyInventory'
+
 import { createBrowserRouter } from 'react-router'
 import TicketDetails from '../pages/TicketDetails/TicketDetails'
 import Tickets from '../components/Home/Tickets'
 import AddTicket from '../pages/Dashboard/Seller/AddTicket'
 import MyBookings from '../pages/Dashboard/Customer/MyBookings'
-import ManageBookings from '../pages/Dashboard/Seller/ManageBookings'
+
 import Statistics from '../pages/Dashboard/Common/Statisticts'
+import Payment from '../components/Payment/Payment'
+import Transaction from '../pages/Dashboard/Customer/Transaction'
+import MyTickets from '../pages/Dashboard/Seller/MyTickets'
+import RequestedBookings from '../pages/Dashboard/Seller/RequestedBookings'
+import ManageTickets from '../pages/Dashboard/Admin/ManageTickets'
+import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
+import AdminAdvertiseTickets from '../pages/Dashboard/Admin/AdminAdvertiseTickets'
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +50,10 @@ export const router = createBrowserRouter([
          path: '/all-tickets',
          element:<Tickets></Tickets> 
       },
+       {
+          path: '/payment-success',
+          element: <Payment></Payment>,
+        },
 
     ],
   },
@@ -56,7 +67,7 @@ export const router = createBrowserRouter([
       ),
       children: [
         {
-          index: true,
+          path:'overview',
           element: (
             <PrivateRoute>
               <Statistics/>
@@ -72,18 +83,26 @@ export const router = createBrowserRouter([
           ),
         },
         {
-          path: 'my-inventory',
+          path: 'my-tickets',
           element: (
             <PrivateRoute>
-              <MyInventory />
+              <MyTickets />
             </PrivateRoute>
           ),
         },
         {
-          path: 'manage-users',
+          path: 'manage-tickets',
           element: (
             <PrivateRoute>
-              <ManageUsers />
+              <ManageTickets />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: 'transaction',
+          element: (
+            <PrivateRoute>
+              <Transaction/>
             </PrivateRoute>
           ),
         },
@@ -104,9 +123,20 @@ export const router = createBrowserRouter([
           ),
         },
         {
-          path: 'manage-bookings',
-          element: <ManageBookings />,
+          path: 'requested-bookings',
+          element: <RequestedBookings />,
         },
+       
+        {
+          path: 'manage-users',
+          element: <ManageUsers />,
+        },
+       
+        {
+          path: 'advertise-tickets',
+          element: <AdminAdvertiseTickets />,
+        },
+       
       ],
     },
 ])

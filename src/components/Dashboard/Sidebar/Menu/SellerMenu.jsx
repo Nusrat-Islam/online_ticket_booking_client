@@ -1,4 +1,4 @@
-import { BsFillHouseAddFill } from 'react-icons/bs'
+import { BsFillHouseAddFill, BsGraphUp } from 'react-icons/bs'
 import { MdHomeWork, MdOutlineManageHistory } from 'react-icons/md'
 import MenuItem from './MenuItem'
 const SellerMenu = () => {
@@ -9,12 +9,17 @@ const SellerMenu = () => {
         label='Add Ticket'
         address='add-ticket'
       />
-      <MenuItem icon={MdHomeWork} label='My Inventory' address='my-inventory' />
+      <MenuItem icon={MdHomeWork} label='My Added Tickets' address='my-tickets' />
       <MenuItem
         icon={MdOutlineManageHistory}
-        label='Manage Booking'
-        address='manage-bookings'
+        label='requested Bookings'
+        address='requested-bookings'
       />
+         <MenuItem
+                icon={BsGraphUp}
+                label='Revenue Overview'
+                address='overview'
+              />
     </>
   )
 }

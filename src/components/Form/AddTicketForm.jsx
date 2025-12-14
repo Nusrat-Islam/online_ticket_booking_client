@@ -88,10 +88,10 @@ const handleSubmit = async (e) => {
    const imageFile = e.target.image.files[0];
     if (!imageFile) throw new Error("Please select an image!");
 
-    // 2️⃣ Image upload using previous function
+   // Image upload using previous function
     const imageUrl = await imageUpload(imageFile);
 
-    // 3️⃣ Prepare ticket data
+    // Prepare ticket data
     const ticketData = {
       ...data,        
       image: imageUrl 
