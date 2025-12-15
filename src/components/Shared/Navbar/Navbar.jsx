@@ -1,7 +1,7 @@
 import Container from '../Container';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { MdDirectionsBus } from "react-icons/md";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import logo from '../../../../public/download__16_-removebg-preview.png';
@@ -17,6 +17,18 @@ const Navbar = () => {
   const activePath = location.pathname;
   const navigate = useNavigate();
 
+
+  //theme togggle
+  const [theme, setTheme]= useState(localStorage.getItem ("theme") || "light");
+  useEffect(() => {
+const html = document.querySelector('html')
+ html.setAttribute("data-theme", theme)
+ localStorage.setItem("theme",theme)
+  },[theme])
+  const handleChange =(checked)=> {
+  setTheme(checked? "night" : "light")  
+   
+  }
   // Active link + underline helper
   const linkClass = (path) =>
     `relative pb-1 font-semibold transition-all duration-200
@@ -77,8 +89,15 @@ const Navbar = () => {
   </span>
 </div>
 
-            {/* Right Side: Login/Register or Avatar */}
+ {/* Right Side: Login/Register or Avatar */}
+
             <div className="hidden md:flex items-center gap-3">
+              <input
+              onChange={(e)=>handleChange(e.target.checked)}
+              type= 'checkbox'
+              defaultChecked={localStorage.getItem('theme') === "dark"}
+              className='toggle'
+              ></input>
               {!user && (
                 <>
     <Link to={"/login"} className="btn">

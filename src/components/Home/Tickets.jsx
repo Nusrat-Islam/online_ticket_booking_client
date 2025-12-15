@@ -1,33 +1,154 @@
-import Card from './Card'
-import Container from '../Shared/Container'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import LoadingSpinner from '../Shared/LoadingSpinner'
+import Card from './Card';
+import Container from '../Shared/Container';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import LoadingSpinner from '../Shared/LoadingSpinner';
+import { useState, useEffect } from 'react';
 
 const Tickets = () => {
-  const {data:tickets, isLoading} = useQuery({
-    queryKey: ['flights'],
-    queryFn: async () => {
-      const result = await axios (`${import.meta.env.VITE_API_URL}/flights`)
-      return result.data
-    },
-})
+  const [searchText, setSearchText] = useState("");
+  const [transportType, setTransportType] = useState("all");
+  const [sortOrder, setSortOrder] = useState("default");
+  const [currentPage, setCurrentPage] = useState(1);
+  const ticketsPerPage = 6;
+  const [filteredTickets, setFilteredTickets] = useState([]);
 
-  if(isLoading) return <LoadingSpinner></LoadingSpinner>
+  // Fetch approved tickets
+  const { data: tickets = [], isLoading } = useQuery({
+    queryKey: ['approved-tickets'],
+    queryFn: async () => {
+      const result = await axios.get(`${import.meta.env.VITE_API_URL}/flights/all-approved`);
+      return result.data;
+    },
+  });
+
+  // Apply search, filter, sort whenever dependencies change
+  useEffect(()  => {
+    let data = [...tickets];
+
+    // Search by route (from-to)
+    if (searchText.trim() !== "") {
+      data = data.filter(ticket =>
+        `${ticket.from} ${ticket.to}`.toLowerCase().includes(searchText.toLowerCase())
+      );
+    }
+
+    // Filter by transport
+    if (transportType !== "all") {
+      data = data.filter(ticket => ticket.transport === transportType);
+    }
+
+    // Sort by price
+    if (sortOrder === "low") {
+      data.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === "high") {
+      data.sort((a, b) => b.price - a.price);
+    }
+
+    setFilteredTickets(data);
+    setCurrentPage(1); // Reset page when filter/search changes
+  }, [tickets, searchText, transportType, sortOrder,setFilteredTickets]);
+
+  // Pagination
+  const indexOfLast = currentPage * ticketsPerPage;
+  const indexOfFirst = indexOfLast - ticketsPerPage;
+  const currentTickets = filteredTickets.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil(filteredTickets.length / ticketsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (isLoading) return <LoadingSpinner />;
+
   return (
     <Container>
-     {tickets && tickets.length>0 ?(
-       <div className='pt-16 grid lg:grid-cols-2 gap-5'>
-       {tickets.map(ticket => <Card key={ticket._id}
-       ticket={ticket}>
+      <p className='mt-20 text-3xl font-bold text-blue-400 text-center'>All Tickets</p>
 
-       </Card>)}
-       
+      {/* Search, Filter, Sort */}
+      <div className="pt-16 mb-6 flex flex-col md:flex-row gap-3">
+        {/* Route Search */}
+        <div className='flex gap-3'>
+          <input
+            type="text"
+            placeholder="From - To (e.g. Dhaka to Chittagong)"
+            className="input input-bordered w-86"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+             <button
+      onClick={() => setCurrentPage(1)}
+      className="btn btn-primary"
+    >
+      Search
+    </button>
+        </div>
+
+        {/* Price Sort */}
+        <div className='flex gap-3 items-center'>
+          <select
+            className="select select-bordered w-full"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <option value="default">Sort by Price</option>
+            <option value="low">Low to High</option>
+            <option value="high">High to Low</option>
+          </select>
+             <button
+      onClick={() => setCurrentPage(1)}
+      className="btn btn-primary"
+    >
+      Search
+    </button>
+        </div>
+
+        {/* Transport Filter */}
+        <div className='flex gap-3 items-center'>
+          <select
+            className='select select-bordered w-full md:w-1/3'
+            value={transportType}
+            onChange={(e) => setTransportType(e.target.value)}
+          >
+            <option value="all">All Transport</option>
+            <option value="Bus">Bus</option>
+            <option value="Train">Train</option>
+            <option value="Flight">Airplane</option>
+            <option value="Launch">Launch</option>
+          </select>
+             <button
+      onClick={() => setCurrentPage(1)}
+      className="btn btn-primary"
+    >
+      Search
+    </button>
+        </div>
       </div>
-     ):null}
-      
+
+      {/* Tickets Grid */}
+      <div className='pt-16 grid lg:grid-cols-2 gap-5'>
+        {currentTickets.length > 0 ? (
+          currentTickets.map(ticket => <Card key={ticket._id} ticket={ticket} />)
+        ) : (
+          <p className="text-center text-gray-500 col-span-full">No tickets found</p>
+        )}
+      </div>
+
+      {/* Pagination Buttons */}
+      <div className="flex justify-center gap-2 mt-6">
+        {Array.from({ length: totalPages }, (_, idx) => (
+          <button
+            key={idx}
+            onClick={() => handlePageChange(idx + 1)}
+            className={`btn btn-sm ${currentPage === idx + 1 ? "btn-primary" : "btn-outline"}`}
+          >
+            {idx + 1}
+          </button>
+        ))}
+      </div>
     </Container>
   )
-}
+};
 
-export default Tickets
+export default Tickets;

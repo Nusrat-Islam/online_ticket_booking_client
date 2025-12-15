@@ -89,8 +89,9 @@ const MyTickets = () => {
             <img src={ticket.image} alt={ticket.title} className="w-full h-40 object-cover rounded-lg mb-4" />
             <h3 className="text-lg font-semibold">{ticket.title}</h3>
             <p>{ticket.from} → {ticket.to}</p>
-            <p>Price: ৳ {ticket.price}</p>
-            <p>Qty: {ticket.quantity}</p>
+            <p><span className="font-semibold">Transport: </span>{ticket.transport}</p>
+            <p><span className="font-semibold">Price:</span> USD {ticket.price}</p>
+            <p><span className="font-semibold">Quantity: </span> {ticket.quantity}</p>
            <span className={`badge ${
   ticket.verificationStatus === "pending"
     ? "badge-warning"

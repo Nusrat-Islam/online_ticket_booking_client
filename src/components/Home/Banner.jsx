@@ -21,7 +21,7 @@ const Banner = () => {
         <SwiperSlide>
           <div className="relative">
             <img
-              src="/window-1.jpg"
+              src="/bus.jpg"
               className="w-full h-[450px] object-cover"
               alt="Flight 1"
             />
@@ -29,7 +29,7 @@ const Banner = () => {
 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
               <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent">
-                Book Your Flight Easily
+                Book Your Ticket Easily
               </h1>
               <p className="text-white mt-3 text-lg max-w-xl">
                 Fast — Secure — Hassle-free Ticket Booking With Ticket Bari
@@ -63,7 +63,7 @@ const Banner = () => {
         <SwiperSlide>
           <div className="relative">
             <img
-              src="/airplane-3702676_1280.jpg"
+              src="/train2.jpg"
               className="w-full h-[450px] object-cover"
               alt="Flight 3"
             />

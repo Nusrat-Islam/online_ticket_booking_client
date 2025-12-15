@@ -15,7 +15,6 @@ import Tickets from '../components/Home/Tickets'
 import AddTicket from '../pages/Dashboard/Seller/AddTicket'
 import MyBookings from '../pages/Dashboard/Customer/MyBookings'
 
-import Statistics from '../pages/Dashboard/Common/Statisticts'
 import Payment from '../components/Payment/Payment'
 import Transaction from '../pages/Dashboard/Customer/Transaction'
 import MyTickets from '../pages/Dashboard/Seller/MyTickets'
@@ -23,6 +22,7 @@ import RequestedBookings from '../pages/Dashboard/Seller/RequestedBookings'
 import ManageTickets from '../pages/Dashboard/Admin/ManageTickets'
 import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
 import AdminAdvertiseTickets from '../pages/Dashboard/Admin/AdminAdvertiseTickets'
+import VendorRevenue from '../components/Dashboard/Statistics/VendorRevenue'
 
 export const router = createBrowserRouter([
   {
@@ -70,7 +70,7 @@ export const router = createBrowserRouter([
           path:'overview',
           element: (
             <PrivateRoute>
-              <Statistics/>
+              <VendorRevenue/>
             </PrivateRoute>
           ),
         },

@@ -49,7 +49,7 @@ const AdminAdvertiseTickets = () => {
           {tickets.map((ticket) => (
             <tr key={ticket._id}>
               <td>{ticket.title}</td>
-              <td>${ticket.unitPrice}</td>
+              <td>${ticket.price}</td>
               <td>{ticket.quantity}</td>
               <td>
                 <input
