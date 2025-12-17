@@ -80,7 +80,7 @@ const Card = ({ ticket }) => {
 
       {/* FULL-WIDTH BUTTON */}
      
-       <Link to={`/ticket/${ticket._id}`} className="btn block w-full text-center  text-white py-3 rounded-lg font-semibold ">
+   <Link to={`/ticket/${ticket._id}`} className="btn block w-full text-center  text-white py-3 rounded-lg font-semibold ">
   <div className="wrapper">
     <div className="flower flower1"><div className="petal"></div><div className="petal two"></div></div>
     <div className="flower flower2"><div className="petal"></div><div className="petal three"></div></div>

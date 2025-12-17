@@ -34,6 +34,11 @@ const Sidebar = () => {
           <div className='block cursor-pointer p-4 font-bold'>
             <Link to='/'>
               <img src={logo} alt='logo' width='100' height='100' />
+              <div className="flex items-center gap-1 -ml-3">
+                            <p className="primary-font -mt-8 text-lg md:text-xl font-bold md:-mt-15 bg-gradient-to-r from-[#1581BF] to-[#00B7B5] bg-clip-text text-transparent">
+                              Ticket Bari
+                            </p>
+                          </div>
             </Link>
           </div>
         </div>
@@ -56,11 +61,14 @@ const Sidebar = () => {
           {/* Top Content */}
           <div>
             {/* Logo */}
-            <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 mx-auto'>
-              <Link to='/'>
-                <img src={logo} alt='logo' width='100' height='100' />
-              </Link>
-            </div>
+              <Link to="/" className="flex flex-col items-center gap-2">
+                          <img src={logo} alt="logo" className="drop-shadow-md w-18 h-18 md:w-28 md:h-28" />
+                          <div className="flex items-center gap-1 -ml-3">
+                            <p className="primary-font -mt-8 text-lg md:text-xl font-bold md:-mt-15 bg-gradient-to-r from-[#1581BF] to-[#00B7B5] bg-clip-text text-transparent">
+                              Ticket Bari
+                            </p>
+                          </div>
+                        </Link>
           </div>
 
           {/* Middle Content */}

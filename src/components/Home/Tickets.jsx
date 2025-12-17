@@ -3,52 +3,61 @@ import Container from '../Shared/Container';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import LoadingSpinner from '../Shared/LoadingSpinner';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 const Tickets = () => {
-  const [searchText, setSearchText] = useState("");
-  const [transportType, setTransportType] = useState("all");
-  const [sortOrder, setSortOrder] = useState("default");
-  const [currentPage, setCurrentPage] = useState(1);
-  const ticketsPerPage = 6;
-  const [filteredTickets, setFilteredTickets] = useState([]);
+const [searchText, setSearchText] = useState("");
+const [transportType, setTransportType] = useState("all");
+const [sortOrder, setSortOrder] = useState("default");
+const [currentPage, setCurrentPage] = useState(1);
 
-  // Fetch approved tickets
-  const { data: tickets = [], isLoading } = useQuery({
-    queryKey: ['approved-tickets'],
-    queryFn: async () => {
-      const result = await axios.get(`${import.meta.env.VITE_API_URL}/flights/all-approved`);
-      return result.data;
-    },
-  });
+const ticketsPerPage = 6;
 
-  // Apply search, filter, sort whenever dependencies change
-  useEffect(()  => {
-    let data = [...tickets];
 
-    // Search by route (from-to)
-    if (searchText.trim() !== "") {
-      data = data.filter(ticket =>
-        `${ticket.from} ${ticket.to}`.toLowerCase().includes(searchText.toLowerCase())
-      );
-    }
+const { data: tickets = [], isLoading } = useQuery({
+  queryKey: ["approved-tickets"],
+  queryFn: async () => {
+    const res = await axios.get(
+      `${import.meta.env.VITE_API_URL}/flights/all/approved`
+    );
+    console.log(res)
+    return res.data;
+  },
+});
 
-    // Filter by transport
-    if (transportType !== "all") {
-      data = data.filter(ticket => ticket.transport === transportType);
-    }
 
-    // Sort by price
-    if (sortOrder === "low") {
-      data.sort((a, b) => a.price - b.price);
-    } else if (sortOrder === "high") {
-      data.sort((a, b) => b.price - a.price);
-    }
+const filteredTickets = useMemo(() => {
+  let data = [...tickets];
 
-    setFilteredTickets(data);
-    setCurrentPage(1); // Reset page when filter/search changes
-  }, [tickets, searchText, transportType, sortOrder,setFilteredTickets]);
 
+  if (searchText.trim()) {
+    data = data.filter(ticket =>
+      `${ticket.from} ${ticket.to}`
+        .toLowerCase()
+        .includes(searchText.toLowerCase())
+    );
+  }
+
+
+  if (transportType !== "all") {
+    data = data.filter(ticket => ticket.transport === transportType);
+  }
+
+
+  if (sortOrder === "low") {
+    data.sort((a, b) => a.price - b.price);
+  } else if (sortOrder === "high") {
+    data.sort((a, b) => b.price - a.price);
+  }
+
+  return data;
+}, [tickets, searchText, transportType, sortOrder]);
+
+
+useEffect(() => {
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  setCurrentPage(1);
+}, [searchText, transportType, sortOrder]);
   // Pagination
   const indexOfLast = currentPage * ticketsPerPage;
   const indexOfFirst = indexOfLast - ticketsPerPage;

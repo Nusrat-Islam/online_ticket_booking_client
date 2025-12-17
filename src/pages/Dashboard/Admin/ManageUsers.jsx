@@ -58,9 +58,9 @@ const ManageUsers = () => {
               <tbody>
         {users.length > 0 ? (
           users.map((user) => (
-            <tr key={user._id} className="border-b hover:bg-gray-100">
-              <td>{user.name}</td>
-              <td>{user.email}</td>
+            <tr key={user?._id} className="border-b hover:bg-gray-100">
+              <td>{user?.name}</td>
+              <td>{user?.email}</td>
               <td className="capitalize">{user.role}</td>
             <td className="space-x-2">
   {/* Make User (যদি already user না হয়) */}

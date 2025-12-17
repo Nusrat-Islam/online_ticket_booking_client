@@ -53,22 +53,12 @@ const BookedTickets = ({ ticket, refetch }) => {
     }
   };
 
-  // Call this after successful payment webhook / redirect back from Stripe
-  const markAsPaid = async () => {
-    try {
-      await axios.patch(`${import.meta.env.VITE_API_URL}/bookings/status/${_id}`, { status: "paid" });
-      setLocalStatus("paid"); // update UI instantly
-      setModalOpen(false);
-      if (refetch) refetch(); // optional: refresh parent query if needed
-    } catch (err) {
-      console.error("Failed to update status:", err);
-    }
-  };
+  
 
   return (
     <div>
       <div className="bg-white rounded-2xl shadow-lg p-5 border">
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-col md:flex-row gap-4">
           {/* LEFT */}
           <div className="md:w-3/4 flex gap-2 p-5 bg-[#F5F9FF] rounded-xl relative">
             <img
@@ -150,7 +140,7 @@ const BookedTickets = ({ ticket, refetch }) => {
               </button>
               <button
                 className={`${modalInfo.confirmColor} text-white px-4 py-2 rounded hover:brightness-90 transition`}
-                onClick={markAsPaid} // <-- update status & hide button
+                onClick={handlePayment} // <-- update status & hide button
               >
                 Confirm
               </button>

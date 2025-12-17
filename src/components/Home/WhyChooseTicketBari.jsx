@@ -61,14 +61,14 @@ const WhyChooseTicketBari = () => {
         {reasons.map((reason, index) => (
           <SwiperSlide key={reason.id}>
             <div
-              className={`rounded-2xl shadow-2xl p-6 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 bg-gradient-to-r ${gradients[index % gradients.length]} text-white`}
+              className={`rounded-2xl w-full h-55 shadow-2xl p-6 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 bg-gradient-to-r ${gradients[index % gradients.length]} text-white`}
             >
               {/* Image Icon */}
               <div className="w-30 h-30 ">
                 <p className="flex justify-center items-center mt-6">{reason.icon}</p>
               </div>
-              <h3 className="text-2xl font-bold mb-2">{reason.title}</h3>
-              <p className="text-xl">{reason.description}</p>
+              <h3 className="text-xm md:text-2xl font-bold mb-2">{reason.title}</h3>
+              <p className="text-xs md:text-xl">{reason.description}</p>
             </div>
           </SwiperSlide>
         ))}

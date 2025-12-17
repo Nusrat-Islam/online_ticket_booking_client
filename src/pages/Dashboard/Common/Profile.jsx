@@ -1,12 +1,13 @@
 import useAuth from '../../../hooks/useAuth'
  import coverImg from '../../../../public/coverImage3.jpg'
 import useRole from '../../../hooks/useRole'
+import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 
 const Profile = () => {
   const { user } = useAuth()
   const [role, isRoleLoading] = useRole()
 
-
+  if(isRoleLoading) return <LoadingSpinner></LoadingSpinner>
   return (
     <div className='flex justify-center items-center h-screen'>
       <div className='bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5'>

@@ -36,7 +36,9 @@ export const router = createBrowserRouter([
       },
       {
         path: '/ticket/:id',
-        element: <TicketDetails />,
+        element:<PrivateRoute>
+          <TicketDetails></TicketDetails>
+        </PrivateRoute>,
       },
       {
         path: '/login',
@@ -48,7 +50,8 @@ export const router = createBrowserRouter([
       },
        {
          path: '/all-tickets',
-         element:<Tickets></Tickets> 
+         element:<Tickets></Tickets>
+      
       },
        {
           path: '/payment-success',
