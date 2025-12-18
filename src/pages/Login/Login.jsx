@@ -27,11 +27,7 @@ const Login = () => {
       //User Login
       await signIn(email, password)
       
-       await saveOrUpdateUser({ 
-    name : user?.displayName,
-     emai: user?.email,
-     image:user?.photoURL
-    })
+  
 
       navigate(from, { replace: true })
       toast.success('Login Successful')

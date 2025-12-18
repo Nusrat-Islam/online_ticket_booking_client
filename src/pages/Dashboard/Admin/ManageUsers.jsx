@@ -3,12 +3,13 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import axios from "axios";
 
 
 const ManageUsers = () => {
   const {user} = useAuth()
 
-  const axiosSecure = useAxiosSecure()
+  // const axiosSecure = useAxiosSecure()
   const {
      data: users = [],
      isLoading,
@@ -16,7 +17,8 @@ const ManageUsers = () => {
   }= useQuery({
     queryKey: ['users', user?.email],
     queryFn: async () => {
-      const result = await axiosSecure('/users')
+      // const result = await axiosSecure('/users')
+      const result = await axios(`${import.meta.env.VITE_API_URL}/users`,{headers:{Authorization:`bearer ${user.accessToken}`}})
       return result.data
     }
   })
@@ -24,18 +26,21 @@ const ManageUsers = () => {
 
     // 👉 role change
   const handleChangeRole = async (id, role) => {
-    await axiosSecure.patch(`/users/role/${id}`, { role });
+    // await axiosSecure.patch(`/users/role/${id}`, { role });
+     axios.patch(`${import.meta.env.VITE_API_URL}/users/role/${id}`,{ role },{headers:{Authorization:`bearer ${user.accessToken}`}}),
     refetch(); // table auto refresh
   };
 
   // 👉 mark fraud
   const handleMarkFraud = async (id) => {
-    await axiosSecure.patch(`/users/fraud/${id}`);
+    // await axiosSecure.patch(`/users/fraud/${id}`);
+     axios.patch(`${import.meta.env.VITE_API_URL}/users/fraud/${id}`,{headers:{Authorization:`bearer ${user.accessToken}`}}),
     refetch();
   };
 //unfraud
   const handleUnFraud = async (id) => {
-  await axiosSecure.patch(`/users/unfraud/${id}`);
+  // await axiosSecure.patch(`/users/unfraud/${id}`);
+   axios.patch(`${import.meta.env.VITE_API_URL}/users/unfraud/${id}`,{headers:{Authorization:`bearer ${user.accessToken}`}}),
   refetch();
 };
 
@@ -63,7 +68,7 @@ const ManageUsers = () => {
               <td>{user?.email}</td>
               <td className="capitalize">{user.role}</td>
             <td className="space-x-2">
-  {/* Make User (যদি already user না হয়) */}
+
   {user.role !== "user" && (
     <button
       onClick={() => handleChangeRole(user._id, "user")}

@@ -23,6 +23,8 @@ import ManageTickets from '../pages/Dashboard/Admin/ManageTickets'
 import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
 import AdminAdvertiseTickets from '../pages/Dashboard/Admin/AdminAdvertiseTickets'
 import VendorRevenue from '../components/Dashboard/Statistics/VendorRevenue'
+import SellerRoute from './SellerRoute'
+import AdminRoute from './AdminRoute'
 
 export const router = createBrowserRouter([
   {
@@ -73,7 +75,11 @@ export const router = createBrowserRouter([
           path:'overview',
           element: (
             <PrivateRoute>
-              <VendorRevenue/>
+             
+             <SellerRoute>
+                <VendorRevenue/>
+             </SellerRoute>
+            
             </PrivateRoute>
           ),
         },
@@ -81,7 +87,9 @@ export const router = createBrowserRouter([
           path: 'add-ticket',
           element: (
             <PrivateRoute>
-              <AddTicket />
+              <SellerRoute>
+                <AddTicket />
+              </SellerRoute>
             </PrivateRoute>
           ),
         },
@@ -89,7 +97,9 @@ export const router = createBrowserRouter([
           path: 'my-tickets',
           element: (
             <PrivateRoute>
-              <MyTickets />
+            <SellerRoute>
+                <MyTickets />
+            </SellerRoute>
             </PrivateRoute>
           ),
         },
@@ -97,7 +107,9 @@ export const router = createBrowserRouter([
           path: 'manage-tickets',
           element: (
             <PrivateRoute>
-              <ManageTickets />
+             <AdminRoute>
+               <ManageTickets />
+             </AdminRoute>
             </PrivateRoute>
           ),
         },
@@ -127,17 +139,29 @@ export const router = createBrowserRouter([
         },
         {
           path: 'requested-bookings',
-          element: <RequestedBookings />,
+          element: <PrivateRoute>
+            <SellerRoute>
+              <RequestedBookings />,
+            </SellerRoute>
+          </PrivateRoute>
         },
        
         {
           path: 'manage-users',
-          element: <ManageUsers />,
+          element:<PrivateRoute>
+             <AdminRoute>
+               <ManageUsers />,
+             </AdminRoute>
+          </PrivateRoute>
         },
        
         {
           path: 'advertise-tickets',
-          element: <AdminAdvertiseTickets />,
+          element: <PrivateRoute>
+            <AdminRoute>
+              <AdminAdvertiseTickets />,
+            </AdminRoute>
+          </PrivateRoute>
         },
        
       ],

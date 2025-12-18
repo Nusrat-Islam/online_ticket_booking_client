@@ -1,20 +1,23 @@
 
 import useAuth from "../../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+// import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 
 const RequestedBookings = () => {
     const [Bookings, setBookings] = useState([]);
     const {user} = useAuth()
-    const axiosSecure = useAxiosSecure()
+    // const axiosSecure = useAxiosSecure()
     const {data:bookings=[], isLoading} = useQuery({
     queryKey: ['bookings', user?.email],
     queryFn: async () => {
-      const result = await axiosSecure ('/requested-bookings')
+      // const result = await axiosSecure ('/requested-bookings')
+      const result =await axios(`${import.meta.env.VITE_API_URL}/requested-bookings`,
+        {headers:{Authorization:`bearer ${user.accessToken}`}})
       return result.data
     },
 })
@@ -22,7 +25,8 @@ console.log(bookings)
 
  const handleStatusChange = async (bookingId, status) => {
     try {
-      await axiosSecure.patch(`/bookings/status/${bookingId}`, { status });
+      await axios.patch(`${import.meta.env.VITE_API_URL}/bookings/status/${bookingId}`,{ status },
+        {headers:{Authorization:`bearer ${user.accessToken}`}})
 
       // Update local state instantly
       setBookings((prev) =>

@@ -123,7 +123,7 @@ useEffect(() => {
             <option value="all">All Transport</option>
             <option value="Bus">Bus</option>
             <option value="Train">Train</option>
-            <option value="Flight">Airplane</option>
+            <option value="Airplane">Airplane</option>
             <option value="Launch">Launch</option>
           </select>
              <button

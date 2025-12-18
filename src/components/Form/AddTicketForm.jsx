@@ -7,17 +7,18 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 import ErrorPage from "../../pages/ErrorPage";
 import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 
  
 const AddTicket = () => {
   const {user} = useAuth()
-  const axiosSecure = useAxiosSecure()
+  // const axiosSecure = useAxiosSecure()
 
   //use Mutation hook useCase
 const { isPending, isError, mutateAsync } = useMutation({
   mutationFn: async (payload) => {
-    const res = await axiosSecure.post('/flights', payload);
+    // const res = await axiosSecure.post('/flights', payload);
+    const res =  await axios.post(`${import.meta.env.VITE_API_URL}/flights`,payload,{headers:{Authorization:`bearer ${user.accessToken}`}})
     return res.data;
   },
   onSuccess: () => {

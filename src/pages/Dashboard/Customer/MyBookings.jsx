@@ -9,7 +9,8 @@ const MyBookings = () => {
     const {data:tickets=[], isLoading} = useQuery({
     queryKey: ['bookings', user?.email],
     queryFn: async () => {
-      const result = await axios (`${import.meta.env.VITE_API_URL}/bookings/${user?.email}`)
+      // const result = await axios (`${import.meta.env.VITE_API_URL}/bookings/${user?.email}`)
+      const result = await axios(`${import.meta.env.VITE_API_URL}/bookings/${user?.email}`,{headers:{Authorization:`bearer ${user.accessToken}`}})
       return result.data
     },
 })

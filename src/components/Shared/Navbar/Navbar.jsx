@@ -54,7 +54,8 @@ const Navbar = () => {
             {/* Center Menu (Desktop) */}
             <div className="hidden md:flex items-center gap-10 mx-auto">
               <Link to="/" className={linkClass("/")}>Home</Link>
-              <span onClick={() => user ? navigate("/all-tickets") : navigate("/login")} className={linkClass("/all-tickets") + " cursor-pointer"}>All Tickets</span>
+              <Link to="/all-tickets" className={linkClass("/all-tickets")}>All Tickets</Link>
+              
               <span onClick={() => user ? navigate("/dashboard") : navigate("/login")} className={linkClass("/dashboard") + " cursor-pointer"}>Dashboard</span>
             </div>
 
@@ -116,7 +117,7 @@ const Navbar = () => {
                   {/* Desktop Dropdown (Hidden on Mobile, handled by Hamburger) */}
                   {isOpen && !window.innerWidth < 768 && (
                     <div className="hidden md:block absolute right-0 top-full mt-2 w-40 bg-white shadow-lg rounded-lg overflow-hidden z-50 border">
-                      <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100 transition">My Profile</Link>
+                      <Link to="/dashboard/profile" className="block px-4 py-2 hover:bg-gray-100 transition">My Profile</Link>
                       <div onClick={logOut} className="block px-4 py-2 hover:bg-gray-100 transition cursor-pointer text-red-500">Logout</div>
                     </div>
                   )}
@@ -141,7 +142,7 @@ const Navbar = () => {
                     
                     {user ? (
                       <>
-                        <Link to="/profile" onClick={() => setIsOpen(false)} className="px-4 py-3 hover:bg-gray-100 border-b">My Profile</Link>
+                        <Link to="/dashboard/profile" onClick={() => setIsOpen(false)} className="px-4 py-3 hover:bg-gray-100 border-b">My Profile</Link>
                         <div onClick={() => { logOut(); setIsOpen(false); }} className="px-4 py-3 hover:bg-gray-100 transition cursor-pointer text-red-500 font-bold">Logout</div>
                       </>
                     ) : (

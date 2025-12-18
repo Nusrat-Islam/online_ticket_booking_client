@@ -11,6 +11,7 @@ import {
 } from 'firebase/auth'
 import { app } from '../firebase/firebase.config'
 import { AuthContext } from './AuthContext'
+import { saveOrUpdateUser } from '../utils'
 
 const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider()
@@ -51,6 +52,15 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, async currentUser => {
       console.log('CurrentUser-->', currentUser?.email)
       setUser(currentUser)
+      if(currentUser){
+         setTimeout(() => {
+     saveOrUpdateUser({ 
+    name : currentUser?.displayName,
+     email: currentUser?.email,
+     image:currentUser?.photoURL
+    })
+    },1000)
+      }
       setLoading(false)
     })
     return () => {

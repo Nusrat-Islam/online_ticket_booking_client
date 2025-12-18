@@ -1,31 +1,37 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { toast } from "react-hot-toast";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import axios from "axios";
+import useAuth from "../../../hooks/useAuth";
 
 const AdminAdvertiseTickets = () => {
-  const axiosSecure = useAxiosSecure();
+  // const axiosSecure = useAxiosSecure();
+  const {user} = useAuth()
 
   const { data: tickets = [], refetch, isLoading } = useQuery({
     queryKey: ["approved-tickets"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/admin/approved-tickets");
+      // const res = await axiosSecure.get("/admin/approved-tickets");
+      const res = await axios(`${import.meta.env.VITE_API_URL}/admin/approved-tickets`,{headers:{Authorization:`bearer ${user.accessToken}`}})
       return res.data;
     },
   });
 
   const handleAdvertiseToggle = async (id, currentState) => {
+    console.log(id)
     try {
-      await axiosSecure.patch(`/admin/advertise-ticket/${id}`, {
-        advertise: !currentState,
-      });
-
+      // await axiosSecure.patch(`/admin/advertise-ticket/${id}`, {
+      //   advertise: !currentState,
+      // });
+     await axios.patch(`${import.meta.env.VITE_API_URL}/admin/advertise-ticket/${id}`,{advertise: !currentState,},{headers:{Authorization:`bearer ${user.accessToken}`}})
+   
       toast.success(
         !currentState ? "Ticket Advertised" : "Ticket Unadvertised"
       );
       refetch();
     } catch (err) {
       toast.error(err.response?.data?.message || "Action failed");
+      console.log(err)
     }
   };
 
