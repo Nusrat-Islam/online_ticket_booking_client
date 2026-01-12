@@ -1,31 +1,31 @@
 import Container from '../Container';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import logo from '../../../../public/download__16_-removebg-preview.png';
-import { useNavigate } from "react-router";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const activePath = location.pathname;
   const navigate = useNavigate();
+
+  const activePath = location.pathname;
 
   // theme toggle
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   useEffect(() => {
-    const html = document.querySelector('html')
-    html.setAttribute("data-theme", theme)
-    localStorage.setItem("theme", theme)
-  }, [theme])
+    const html = document.querySelector('html');
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const handleChange = (checked) => {
-    setTheme(checked ? "night" : "light")
+    setTheme(checked ? "night" : "light");
   }
 
-  // Active link + underline helper
+  // Active link helper
   const linkClass = (path) =>
     `relative pb-1 font-semibold transition-all duration-200
      hover:text-[#1581BF] 
@@ -44,24 +44,34 @@ const Navbar = () => {
             {/* Logo Left */}
             <Link to="/" className="flex flex-col items-center gap-2">
               <img src={logo} alt="logo" className="drop-shadow-md w-18 h-18 md:w-28 md:h-28" />
-              <div className="flex items-center gap-1 -ml-3">
-                <p className="primary-font -mt-8 text-lg md:text-xl font-bold md:-mt-15 bg-gradient-to-r from-[#1581BF] to-[#00B7B5] bg-clip-text text-transparent">
-                  Ticket Bari
-                </p>
-              </div>
+              <p className="primary-font text-lg md:text-xl font-bold bg-gradient-to-r from-[#1581BF] to-[#00B7B5] bg-clip-text text-transparent -mt-8">
+                Ticket Bari
+              </p>
             </Link>
 
             {/* Center Menu (Desktop) */}
             <div className="hidden md:flex items-center gap-10 mx-auto">
               <Link to="/" className={linkClass("/")}>Home</Link>
               <Link to="/all-tickets" className={linkClass("/all-tickets")}>All Tickets</Link>
-              
-              <span onClick={() => user ? navigate("/dashboard") : navigate("/login")} className={linkClass("/dashboard") + " cursor-pointer"}>Dashboard</span>
+              <Link to="/about" className={linkClass("/about")}>About Us</Link>
+
+              {/* Only logged in links */}
+              {user && (
+                <>
+                  <Link to="/support" className={linkClass("/support")}>Support</Link>
+                  <span 
+                    onClick={() => navigate("/dashboard")} 
+                    className={linkClass("/dashboard") + " cursor-pointer"}
+                  >
+                    Dashboard
+                  </span>
+                </>
+              )}
             </div>
 
-            {/* Right Side & Responsive Controls */}
+            {/* Right Side */}
             <div className="flex items-center gap-3">
-              {/* Theme Toggle (Desktop & Mobile) */}
+              {/* Theme Toggle */}
               <input
                 onChange={(e) => handleChange(e.target.checked)}
                 type='checkbox'
@@ -69,35 +79,15 @@ const Navbar = () => {
                 className='toggle toggle-info sm:toggle-md toggle-sm'
               />
 
-              {/* Login/Signup Buttons (Original Design - Hidden on Mobile) */}
+              {/* Login/Signup (Desktop Only) */}
               {!user && (
                 <div className="hidden md:flex items-center gap-3">
-                  <Link to={"/login"} className="btn">
-                    <div className="wrapper">
-                      <div className="flower flower1"><div className="petal"></div><div className="petal two"></div></div>
-                      <div className="flower flower2"><div className="petal"></div><div className="petal three"></div></div>
-                      <div className="flower flower3"><div className="petal"></div><div className="petal four"></div></div>
-                      <div className="flower flower4"><div className="petal"></div><div className="petal two"></div></div>
-                      <div className="flower flower5"><div className="petal"></div><div className="petal three"></div></div>
-                      <div className="flower flower6"><div className="petal"></div><div className="petal four"></div></div>
-                      <span className="text">Login</span>
-                    </div>
-                  </Link>
-                  <Link to={"/signup"} className="btn">
-                    <div className="wrapper">
-                      <div className="flower flower1"><div className="petal"></div><div className="petal two"></div></div>
-                      <div className="flower flower2"><div className="petal"></div><div className="petal three"></div></div>
-                      <div className="flower flower3"><div className="petal"></div><div className="petal four"></div></div>
-                      <div className="flower flower4"><div className="petal"></div><div className="petal two"></div></div>
-                      <div className="flower flower5"><div className="petal"></div><div className="petal three"></div></div>
-                      <div className="flower flower6"><div className="petal"></div><div className="petal four"></div></div>
-                      <span className="text">Signup</span>
-                    </div>
-                  </Link>
+                  <Link to="/login" className="btn">Login</Link>
+                  <Link to="/signup" className="btn">Signup</Link>
                 </div>
               )}
 
-              {/* User Avatar + Name (Visible when logged in - Both Mobile & Desktop) */}
+              {/* User Avatar */}
               {user && (
                 <div className="relative flex items-center gap-2">
                   <div
@@ -114,9 +104,9 @@ const Navbar = () => {
                     </span>
                   </div>
 
-                  {/* Desktop Dropdown (Hidden on Mobile, handled by Hamburger) */}
-                  {isOpen && !window.innerWidth < 768 && (
-                    <div className="hidden md:block absolute right-0 top-full mt-2 w-40 bg-white shadow-lg rounded-lg overflow-hidden z-50 border">
+                  {/* Desktop Dropdown */}
+                  {isOpen && window.innerWidth >= 768 && (
+                    <div className="absolute right-0 top-full mt-2 w-40 bg-white shadow-lg rounded-lg overflow-hidden z-50 border">
                       <Link to="/dashboard/profile" className="block px-4 py-2 hover:bg-gray-100 transition">My Profile</Link>
                       <div onClick={logOut} className="block px-4 py-2 hover:bg-gray-100 transition cursor-pointer text-red-500">Logout</div>
                     </div>
@@ -124,7 +114,7 @@ const Navbar = () => {
                 </div>
               )}
 
-              {/* Mobile Hamburger Icon */}
+              {/* Mobile Hamburger */}
               <div className="md:hidden relative">
                 <div
                   onClick={() => setIsOpen(!isOpen)}
@@ -133,13 +123,21 @@ const Navbar = () => {
                   <AiOutlineMenu className="text-[#1581BF]" size={20} />
                 </div>
 
-                {/* Mobile Dropdown Menu (Shob Link ekhane) */}
                 {isOpen && (
                   <div className="absolute right-0 top-12 bg-white rounded-xl shadow-2xl w-[65vw] overflow-hidden flex flex-col text-sm font-semibold border z-[60]">
                     <Link to="/" onClick={() => setIsOpen(false)} className="px-4 py-3 hover:bg-gray-100 border-b">Home</Link>
                     <Link to="/all-tickets" onClick={() => setIsOpen(false)} className="px-4 py-3 hover:bg-gray-100 border-b">All Tickets</Link>
-                    <Link to="/dashboard" onClick={() => setIsOpen(false)} className="px-4 py-3 hover:bg-gray-100 border-b">Dashboard</Link>
-                    
+                    <Link to="/about" onClick={() => setIsOpen(false)} className="px-4 py-3 hover:bg-gray-100 border-b">About Us</Link>
+
+                    {/* Logged in links */}
+                    {user && (
+                      <>
+                        <Link to="/support" onClick={() => setIsOpen(false)} className="px-4 py-3 hover:bg-gray-100 border-b">Support</Link>
+                        <Link to="/dashboard" onClick={() => setIsOpen(false)} className="px-4 py-3 hover:bg-gray-100 border-b">Dashboard</Link>
+                      </>
+                    )}
+
+                    {/* Auth Buttons */}
                     {user ? (
                       <>
                         <Link to="/dashboard/profile" onClick={() => setIsOpen(false)} className="px-4 py-3 hover:bg-gray-100 border-b">My Profile</Link>
@@ -148,7 +146,7 @@ const Navbar = () => {
                     ) : (
                       <>
                         <Link to="/login" onClick={() => setIsOpen(false)} className="px-4 py-3 hover:bg-gray-100 border-b">Login</Link>
-                        <Link to="/signup" onClick={() => setIsOpen(false)} className="px-4 py-3 hover:bg-gray-100">Register</Link>
+                        <Link to="/signup" onClick={() => setIsOpen(false)} className="px-4 py-3 hover:bg-gray-100">Signup</Link>
                       </>
                     )}
                   </div>

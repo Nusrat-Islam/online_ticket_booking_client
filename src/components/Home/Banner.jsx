@@ -8,7 +8,7 @@ import Container from "../Shared/Container";
 
 const Banner = () => {
   return (
-   <Container>
+   
      <div className="w-full mt-20">
       <Swiper
         modules={[Pagination, Autoplay]}
@@ -77,12 +77,14 @@ const Banner = () => {
                 Trusted online ticket booking platform for smart travelers.
               </p>
             </div>
+
           </div>
         </SwiperSlide>
       </Swiper>
     </div>
-   </Container>
+
   );
 };
+
 
 export default Banner;

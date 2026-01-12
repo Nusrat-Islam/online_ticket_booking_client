@@ -11,7 +11,7 @@ const [transportType, setTransportType] = useState("all");
 const [sortOrder, setSortOrder] = useState("default");
 const [currentPage, setCurrentPage] = useState(1);
 
-const ticketsPerPage = 6;
+const ticketsPerPage = 8;
 
 
 const { data: tickets = [], isLoading } = useQuery({
@@ -136,7 +136,12 @@ useEffect(() => {
       </div>
 
       {/* Tickets Grid */}
-      <div className='pt-16 grid lg:grid-cols-2 gap-5'>
+      <div className='pt-16  grid
+  grid-cols-1
+  md:grid-cols-2
+  lg:grid-cols-4
+ 
+  gap-6'>
         {currentTickets.length > 0 ? (
           currentTickets.map(ticket => <Card key={ticket._id} ticket={ticket} />)
         ) : (

@@ -24,7 +24,7 @@ const { data: tickets = [], isLoading, error } = useQuery({
    <Container>
        <div className="p-6 mb-10">
       <h2 className="text-3xl text-center text-blue-400 font-bold mb-6">Latest Tickets</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4  gap-6">
         {tickets.map(ticket => (
           <div key={ticket._id}>
             <LatestCard ticket={ticket}></LatestCard>

@@ -25,6 +25,8 @@ import AdminAdvertiseTickets from '../pages/Dashboard/Admin/AdminAdvertiseTicket
 import VendorRevenue from '../components/Dashboard/Statistics/VendorRevenue'
 import SellerRoute from './SellerRoute'
 import AdminRoute from './AdminRoute'
+import AboutUs from '../pages/AboutUs'
+import SupportPage from '../pages/SupportPage'
 
 export const router = createBrowserRouter([
   {
@@ -38,9 +40,9 @@ export const router = createBrowserRouter([
       },
       {
         path: '/ticket/:id',
-        element:<PrivateRoute>
-          <TicketDetails></TicketDetails>
-        </PrivateRoute>,
+        element:
+          <TicketDetails></TicketDetails>,
+      
       },
       {
         path: '/login',
@@ -53,6 +55,16 @@ export const router = createBrowserRouter([
        {
          path: '/all-tickets',
          element:<Tickets></Tickets>
+      
+      },
+       {
+         path: '/about',
+         element:<AboutUs></AboutUs>
+      
+      },
+       {
+         path: '/support',
+         element:<SupportPage></SupportPage>
       
       },
        {

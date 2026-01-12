@@ -2,85 +2,83 @@ import { Link } from "react-router";
 import { ArrowRight, Plane } from "lucide-react";
 import React from "react";
 
-
-
-
 const Card = ({ ticket }) => {
   return (
-    <div className="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-lg shadow-blue-400 border overflow-hidden p-4">
+    <div className="w-full bg-white rounded-2xl shadow-lg shadow-blue-400 border overflow-hidden">
 
-      {/* CARD CONTENT */}
-      <div className="flex flex-col md:flex-row gap-6">
+      {/* IMAGE – FULL WIDTH */}
+      <img
+        src={ticket.image}
+        alt="ticket"
+        className="w-full h-44 object-cover"
+      />
 
-        {/* LEFT SECTION */}
-        <div className="md:w-3/4 flex gap-5 p-5 relative bg-[#F5F9FF] rounded-xl">
+      {/* CONTENT */}
+      <div className="p-4 space-y-4">
 
-          {/* Ticket Image */}
-          <img
-            src={ticket.image}
-            alt="ticket"
-            className="w-36 h-36 object-cover rounded-lg border"
-          />
+        {/* TITLE */}
+        <h2 className="text-lg font-bold text-gray-900">
+          {ticket.title}
+        </h2>
 
-          <div className="flex flex-col justify-between w-full">
+        {/* ROUTE */}
+        <p className="text-gray-700 flex items-center justify-center gap-2">
+          <span className="font-semibold">{ticket.from}</span>
+          <ArrowRight size={18} />
+          <span className="font-semibold">{ticket.to}</span>
+        </p>
 
-            {/* Ticket Title */}
-            <h2 className="text-xl font-bold text-gray-900">{ticket.title}</h2>
+        {/* TRANSPORT */}
+        <p className="text-sm text-gray-500 flex items-center justify-center gap-1">
+          <Plane size={18} /> {ticket.transport}
+        </p>
 
-            {/* Route */}
-            <p className="text-gray-700 flex items-center gap-2 mt-2">
-              <span className="font-semibold">{ticket.from}</span>
-              <ArrowRight size={18} />
-              <span className="font-semibold">{ticket.to}</span>
+        {/* DASHED LINE (ticket feel) */}
+        <div className="border-t-2 border-dashed border-blue-300"></div>
+
+        {/* LEFT + RIGHT CONTENT (STACKED) */}
+        <div className="grid grid-cols-2 gap-4 text-sm">
+
+          <div className="">
+            <p >Price(per unit):</p>
+            <p className="text-xl font-bold text-blue-700">
+              USD {ticket.price}
             </p>
-
-            {/* Transport Type */}
-            <p className="text-sm text-gray-500 flex items-center gap-1 mt-2">
-              <Plane size={20} /> {ticket.transport}
-            </p>
-
-            {/* Perks */}
-            <div className="flex flex-wrap gap-2 mt-2">
-              Perks:
-              {ticket.perks?.map((perk, idx) => (
-                <span
-                  key={idx}
-                  className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full"
-                >
-                 {perk}
-                </span>
-              ))}
-            </div>
-
-            {/* Vertical dashed divider */}
-            <div className="absolute -right-6 top-5 bottom-5 w-[2px] border-r-2 border-dashed border-blue-300"></div>
-          </div>
-        </div>
-
-        {/* RIGHT SECTION */}
-        <div className="md:w-3/9 p-4 bg-[#EBF3FF] flex flex-col justify-between rounded-xl">
-
-          {/* Price & Quantity */}
-          <div>
-            <p className="text-sm text-gray-500">Price (per unit)</p>
-            <p className="text-2xl font-bold text-blue-700">USD {ticket.price}</p>
-
-            <p className="text-sm text-gray-500 mt-2">Ticket Quantity</p>
-            <p className="text-lg font-semibold">{ticket.quantity}</p>
           </div>
 
-          {/* Departure */}
-          <div className="mt-1">
-            <p className="text-sm text-gray-500">Departure</p>
-            <p className="font-semibold">{ticket.date} – {ticket.time}</p>
+          <div className="flex items-center gap-2">
+            <p>Quantity:</p>
+            <p className="font-semibold">{ticket.quantity}</p>
+          </div>
+
+          <div className="">
+            <p >Departure:</p>
+            <p className="font-semibold">
+              {ticket.date}
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <p className="text-gray-500">Time</p>
+            <p className="font-semibold">{ticket.time}</p>
           </div>
 
         </div>
-      </div>
 
-      {/* FULL-WIDTH BUTTON */}
-     
-   <Link to={`/ticket/${ticket._id}`} className="btn block w-full text-center  text-white py-3 rounded-lg font-semibold ">
+        {/* PERKS */}
+        <div className="flex flex-wrap gap-2">
+          {ticket.perks?.map((perk, idx) => (
+            <span
+              key={idx}
+              className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full"
+            >
+            {perk}
+            </span>
+          ))}
+        </div>
+
+        {/* BUTTON (UNCHANGED STYLE) */}
+                    <Link to={`/ticket/${ticket._id}`} className="btn block w-full text-center  text-white py-3 rounded-lg font-semibold ">
   <div className="wrapper">
     <div className="flower flower1"><div className="petal"></div><div className="petal two"></div></div>
     <div className="flower flower2"><div className="petal"></div><div className="petal three"></div></div>
@@ -90,15 +88,10 @@ const Card = ({ ticket }) => {
     <div className="flower flower6"><div className="petal"></div><div className="petal four"></div></div>
     <span className="text text-xl">See Details</span>
   </div>
-</Link>
+</Link> 
+      </div>
     </div>
   );
 };
 
 export default Card;
-
-
-
-
-
-

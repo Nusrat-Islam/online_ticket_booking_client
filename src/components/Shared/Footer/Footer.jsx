@@ -63,7 +63,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t bg-white/40 backdrop-blur py-4 text-center text-sm font-semibold text-gray-700">
-        © 2025 TicketBari. All rights reserved.
+        © 2026 TicketBari. All rights reserved.
       </div>
     </footer>
   );
