@@ -49,7 +49,7 @@ console.log(bookings)
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-6">
+      <h2 className="text-3xl font-semibold mb-6 text-blue-500 flex justify-center items-center">
         Requested Bookings
       </h2>
 

@@ -139,7 +139,7 @@ const handleSubmit = async (e) => {
 
   return (
     <div className="max-w-5xl mx-auto bg-base-100 text-base-content shadow-lg p-8 rounded-xl my-10">
-      <h2 className="text-3xl font-bold mb-6 text-center dark:text-base-200 text-blue-500">Add New Ticket</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center text-blue-500">Add New Ticket</h2>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
         

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
 const ManageTickets = () => {
   const [tickets, setTickets] = useState([]);
@@ -37,11 +38,11 @@ const ManageTickets = () => {
     }
   };
 
-  if (loading) return <p className="text-center py-10">Loading...</p>;
+  if (loading) return <p className="text-center py-10"><LoadingSpinner></LoadingSpinner></p>;
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-6 dark:text-base-200">Manage Tickets</h2>
+      <h2 className="text-3xl text-blue-500 flex justify-center items-center font-semibold mb-6 ">Manage Tickets</h2>
 
       <div className="overflow-x-auto rounded-xl shadow">
         <table className="table table-zebra w-full min-w-[900px]">

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
 const AdminAdvertiseTickets = () => {
   // const axiosSecure = useAxiosSecure();
@@ -35,11 +36,11 @@ const AdminAdvertiseTickets = () => {
     }
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p><LoadingSpinner></LoadingSpinner></p>;
 
   return (
     <div className="p-6 bg-base-100 text-base-content">
-      <h2 className="text-2xl font-bold mb-4bg-gradient-to-r from-[#1581BF] to-[#00B7B5] bg-clip-text dark:text-base-200 ">Advertise Tickets</h2>
+      <h2 className="text-3xl flex justify-center items-center font-bold mb-4 text-blue-500 ">Advertise Tickets</h2>
 
       <table className="table w-full">
         <thead>

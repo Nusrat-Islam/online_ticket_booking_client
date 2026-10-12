@@ -80,6 +80,7 @@ const Login = () => {
                 type='email'
                 name='email'
                 id='email'
+                autoComplete='off'
                 required
                 placeholder='Enter Your Email Here'
               className='w-full px-3 py-2 border rounded-lg border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-500'
@@ -94,8 +95,9 @@ const Login = () => {
               <input
                 type='password'
                 name='password'
-                autoComplete='current-password'
+                autoComplete='new-password'
                 id='password'
+                
                 required
                 placeholder='*******'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900 block mb-2 text-sm font-medium text-gray-700 dark:text-gray-200 dark:bg-gray-800'

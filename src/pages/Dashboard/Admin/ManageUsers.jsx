@@ -48,7 +48,7 @@ const ManageUsers = () => {
   if(isLoading) return <LoadingSpinner></LoadingSpinner>
   return (
     <div className="p-6 bg-base-100 text-base-content min-h-screen">
-      <h2 className="text-2xl font-bold mb-6 dark:text-base-200">Manage Users</h2>
+      <h2 className="text-3xl text-blue-500 flex justify-center items-center font-bold mb-6">Manage Users</h2>
 
       <div className="overflow-x-auto">
         <table className="min-w-full bg-base-100 text-base-content shadow rounded-lg overflow-hidden">

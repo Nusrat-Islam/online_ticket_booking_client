@@ -60,10 +60,10 @@ const VendorRevenue = () => {
 
   return (
     <div className="p-6 bg-base-100 text-base-content rounded-2xl shadow-lg">
-      <h2 className="text-2xl font-bold text-blue-500 dark:text-base-200 mb-6">Revenue Overview</h2>
+      <h2 className="text-3xl flex justify-center items-center font-bold text-blue-500 mb-6">Revenue Overview</h2>
 
       {/* Cards */}
-      <div className="grid md:grid-cols-3 gap-4 mb-8">
+      <div className="grid md:grid-cols-3 gap-4 mb-8 bg-base-100 text-base-content">
         <div className="bg-blue-100 p-4 rounded-lg text-center">
           <h3 className="text-lg font-semibold">Total Revenue</h3>
           <p className="text-2xl font-bold text-blue-600">${data.totalRevenue}</p>

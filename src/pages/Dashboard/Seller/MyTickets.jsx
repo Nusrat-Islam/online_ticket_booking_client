@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
 const MyTickets = () => {
   const { user } = useAuth();
@@ -73,11 +74,11 @@ const MyTickets = () => {
     }
   };
 
-  if (loading) return <p className="text-center py-10 text-base-content">Loading...</p>;
+  if (loading) return <p className="text-center py-10 text-base-content"><LoadingSpinner></LoadingSpinner></p>;
 
   return (
     <div className="min-h-screen p-4 bg-base-100 text-base-content transition-colors duration-300">
-      <h2 className="text-2xl font-semibold mb-6">My Added Tickets</h2>
+      <h2 className="text-3xl font-semibold mb-6 text-blue-500 flex justify-center items-center">My Added Tickets</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {tickets.length === 0 && (
