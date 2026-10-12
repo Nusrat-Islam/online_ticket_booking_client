@@ -191,21 +191,15 @@ const handleBookingSubmit = async (e) => {
       <button
         disabled={departurePassed || outOfStock}
         onClick={() => setOpenModal(true)}
-        className={`btn mt-6 w-full py-3 rounded-xl font-semibold text-white shadow-lg ${
+        className={`w-full rounded-lg bg-gradient-to-r from-sky-600 to-cyan-500 px-4 py-2.5 text-sm font-bold text-white shadow-md transition duration-300 hover:from-sky-700 flex items-center justify-center hover:to-cyan-600 disabled:opacity-60${
           departurePassed || outOfStock
             ? "bg-gray-400 cursor-not-allowed"
             : "bg-blue-600 hover:bg-blue-700 transform hover:-translate-y-1 transition-all"
         }`}
       >
-        <div className="wrapper">
-          <div className="flower flower1"><div className="petal"></div><div className="petal two"></div></div>
-          <div className="flower flower2"><div className="petal"></div><div className="petal three"></div></div>
-          <div className="flower flower3"><div className="petal"></div><div className="petal four"></div></div>
-          <div className="flower flower4"><div className="petal"></div><div className="petal two"></div></div>
-          <div className="flower flower5"><div className="petal"></div><div className="petal three"></div></div>
-          <div className="flower flower6"><div className="petal"></div><div className="petal four"></div></div>
+        
           <span className="text">Book Now</span>
-        </div>
+        
       </button>
 
       {/* ======================

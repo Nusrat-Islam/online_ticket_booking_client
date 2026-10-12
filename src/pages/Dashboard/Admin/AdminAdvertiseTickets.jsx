@@ -38,8 +38,8 @@ const AdminAdvertiseTickets = () => {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Advertise Tickets</h2>
+    <div className="p-6 bg-base-100 text-base-content">
+      <h2 className="text-2xl font-bold mb-4bg-gradient-to-r from-[#1581BF] to-[#00B7B5] bg-clip-text dark:text-base-200 ">Advertise Tickets</h2>
 
       <table className="table w-full">
         <thead>
@@ -52,7 +52,7 @@ const AdminAdvertiseTickets = () => {
         </thead>
 
         <tbody>
-          {tickets.map((ticket) => (
+          {tickets?.map((ticket) => (
             <tr key={ticket._id}>
               <td>{ticket.title}</td>
               <td>${ticket.price}</td>

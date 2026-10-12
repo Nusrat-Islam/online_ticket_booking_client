@@ -138,8 +138,8 @@ const handleSubmit = async (e) => {
  if(isError) return <ErrorPage></ErrorPage>
 
   return (
-    <div className="max-w-5xl mx-auto bg-white shadow-lg p-8 rounded-xl my-10">
-      <h2 className="text-3xl font-bold mb-6 text-center text-blue-500">Add New Ticket</h2>
+    <div className="max-w-5xl mx-auto bg-base-100 text-base-content shadow-lg p-8 rounded-xl my-10">
+      <h2 className="text-3xl font-bold mb-6 text-center dark:text-base-200 text-blue-500">Add New Ticket</h2>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
@@ -333,14 +333,8 @@ const handleSubmit = async (e) => {
           {/* <button className="btn btn-success w-full text-white text-lg font-semibold">
             Add Ticket
           </button> */}
-          <button className="btn btn-success w-full text-white text-lg font-semibold">
-  <div className="wrapper">
-    <div className="flower flower1"><div className="petal"></div><div className="petal two"></div></div>
-    <div className="flower flower2"><div className="petal"></div><div className="petal three"></div></div>
-    <div className="flower flower3"><div className="petal"></div><div className="petal four"></div></div>
-    <div className="flower flower4"><div className="petal"></div><div className="petal two"></div></div>
-    <div className="flower flower5"><div className="petal"></div><div className="petal three"></div></div>
-    <div className="flower flower6"><div className="petal"></div><div className="petal four"></div></div>
+          <button className="w-full rounded-lg bg-gradient-to-r from-sky-600 to-cyan-500 px-4 py-2.5 text-sm font-bold text-white shadow-md transition duration-300 hover:from-sky-700 hover:to-cyan-600 disabled:opacity-60 flex items-center justify-center">
+
     {
       isPending?( <TbFidgetSpinner className='animate-spin m-auto' />
 
@@ -348,7 +342,7 @@ const handleSubmit = async (e) => {
         'Add Ticket'
       )
     }
-  </div>
+
 </button>
         </div>
 

@@ -1,9 +1,10 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 
 const SupportPage = () => {
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 px-6 py-12 flex flex-col justify-center items-center gap-10">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-100 px-6 py-12 flex flex-col justify-center items-center gap-10 transition-colors duration-300">
 
       {/* Page Title */}
       <motion.h1
@@ -17,7 +18,7 @@ const SupportPage = () => {
 
       {/* Intro Paragraph */}
       <motion.p
-        className="text-lg md:text-xl max-w-3xl text-center"
+        className="text-lg md:text-xl max-w-3xl text-center text-gray-700 dark:text-gray-200"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.8 }}
@@ -30,7 +31,7 @@ const SupportPage = () => {
 
       {/* Support Info Blocks */}
       <motion.div
-        className="space-y-6 max-w-3xl text-center"
+        className="space-y-6 max-w-3xl text-center text-gray-700 dark:text-gray-200"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.8 }}

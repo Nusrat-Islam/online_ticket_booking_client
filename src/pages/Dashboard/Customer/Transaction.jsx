@@ -30,7 +30,7 @@ console.log(payments)
           </thead>
 
           <tbody>
-            {payments.map((payment) => (
+            {payments?.map((payment) => (
               <TransactedHistory key={payment._id} payment={payment} />
             ))}
           </tbody>

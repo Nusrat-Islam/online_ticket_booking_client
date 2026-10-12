@@ -57,11 +57,11 @@ const Login = () => {
   }
   }
   return (
-    <div className='flex justify-center items-center min-h-screen bg-white'>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+    <div className='flex justify-center items-center min-h-[calc(100vh-140px)] bg-gray-50 dark:bg-black px-4 py-4 transition-colors duration-300'>
+      <div className='flex flex-col w-full max-w-lg p-5 sm:p-6 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 text-base-content shadow-lg'>
         <div className='mb-8 text-center'>
-          <h1 className='my-3 text-4xl font-bold'>Log In</h1>
-          <p className='text-sm text-gray-400'>
+          <h1 className='my-3 text-2xl font-bold bg-gradient-to-r from-[#1581BF] to-[#00B7B5] bg-clip-text'>Log In</h1>
+          <p className='text-2xl text-gray-500 dark:text-gray-400'>
             Sign in to access your account
           </p>
         </div>
@@ -82,13 +82,12 @@ const Login = () => {
                 id='email'
                 required
                 placeholder='Enter Your Email Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900'
-                data-temp-mail-org='0'
+              className='w-full px-3 py-2 border rounded-lg border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-500'
               />
             </div>
             <div>
               <div className='flex justify-between'>
-                <label htmlFor='password' className='text-sm mb-2'>
+                <label htmlFor='password' className='block mb-2 text-sm font-medium text-gray-700 dark:text-gray-200'>
                   Password
                 </label>
               </div>
@@ -99,7 +98,7 @@ const Login = () => {
                 id='password'
                 required
                 placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900 block mb-2 text-sm font-medium text-gray-700 dark:text-gray-200 dark:bg-gray-800'
               />
             </div>
           </div>
@@ -110,18 +109,12 @@ const Login = () => {
     <span className="text">Signup</span>
   </div>
 </Link> */}
-  <div className="wrapper ">
-            <button
+
+            <button 
               type='submit'
-              className=' w-full btn text-xm rounded-md py-3 font-bold'
+              className='w-full rounded-lg bg-gradient-to-r from-sky-600 to-cyan-500 px-4 py-2.5 text-sm font-bold text-white shadow-md transition duration-300 hover:from-sky-700 hover:to-cyan-600 disabled:opacity-60'
             >
              
-    <div className="flower flower1"><div className="petal"></div><div className="petal two"></div></div>
-    <div className="flower flower2"><div className="petal"></div><div className="petal three"></div></div>
-    <div className="flower flower3"><div className="petal"></div><div className="petal four"></div></div>
-    <div className="flower flower4"><div className="petal"></div><div className="petal two"></div></div>
-    <div className="flower flower5"><div className="petal"></div><div className="petal three"></div></div>
-    <div className="flower flower6"><div className="petal"></div><div className="petal four"></div></div>
                  {loading ? (
                 <TbFidgetSpinner className='animate-spin m-auto' />
               ) : (
@@ -129,7 +122,7 @@ const Login = () => {
               )}
            
             </button>
-               </div>
+               
           </div>
         </form>
         <div className='space-y-1'>
@@ -157,7 +150,7 @@ const Login = () => {
           <Link
             state={from}
             to='/signup'
-            className='hover:underline hover:text-lime-500 text-gray-600'
+            className='hover:underline hover:text-lime-500 text-blue-600'
           >
             Sign up
           </Link>

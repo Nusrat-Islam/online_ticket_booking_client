@@ -16,16 +16,10 @@ const Payment = () => {
             <div className='flex flex-col justify-center items-center mt-40'>
                  <p className=""><IoBagCheckOutline size={70}/></p>
                  <h2 className='text-3xl font-bold mt-4 mb-4 text-blue-500'>Payment Successfull</h2>
-                 <Link to={"/dashboard/transaction"} className="btn">
-  <div className="wrapper">
-    <div className="flower flower1"><div className="petal"></div><div className="petal two"></div></div>
-    <div className="flower flower2"><div className="petal"></div><div className="petal three"></div></div>
-    <div className="flower flower3"><div className="petal"></div><div className="petal four"></div></div>
-    <div className="flower flower4"><div className="petal"></div><div className="petal two"></div></div>
-    <div className="flower flower5"><div className="petal"></div><div className="petal three"></div></div>
-    <div className="flower flower6"><div className="petal"></div><div className="petal four"></div></div>
+                 <Link to={"/dashboard/transaction"} className="w-full rounded-lg bg-gradient-to-r from-sky-600 to-cyan-500 px-4 py-2.5 text-sm font-bold text-white shadow-md transition duration-300 hover:from-sky-700 hover:to-cyan-600 disabled:opacity-60">
+  
     <span className="text">Go to Your Transaction Page</span>
-  </div>
+  
 </Link>
             </div>
         </div>

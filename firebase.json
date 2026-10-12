@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "online-ticket-booking-ed0a4",
     "public": "dist",
     "ignore": [
       "firebase.json",

@@ -5,19 +5,27 @@ import { BsPaypal } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-[#b5d7e8] to-[#33adea] text-gray-800 mt-10">
+
+
+    <footer className="bg-gradient-to-r from-[#b5d7e8] to-[#33adea] dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-200 mt-10">
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-18 font-semibold">
 
         {/* Column 1 – Logo + Short Description */}
         <div>
-          <Link to="/" className="flex flex-col items-center ">
-            <img src={logo} alt="logo" className="w-30 h-30" />
+          {/* <Link to="/" className="flex flex-col items-center ">
+            <img src={logo} alt="logo" className="w-12 h-12 md:w-16 h-16" />
             <p className="-mt-10 primary-font text-2xl font-bold bg-gradient-to-r from-[#1581BF] to-[#00B7B5] bg-clip-text text-transparent">
               Ticket Bari
             </p>
-          </Link>
+          </Link> */}
+          <Link to="/" className="flex flex-col items-center gap-2">
+                        <img src={logo} alt="logo" className="drop-shadow-md w-12 h-12 md:w-16 md:h-16" />
+                        <p className="primary-font text-lg md:text-xl font-bold bg-gradient-to-r from-[#1581BF] to-[#00B7B5] bg-clip-text text-transparent -mt-8">
+                          Ticket Bari
+                        </p>
+                      </Link>
 
-          <p className="mt-3 text-sm font-medium leading-6 text-gray-700">
+          <p className="mt-3 text-sm font-medium leading-6 text-gray-700 dark:text-gray-300">
             Book bus, train, launch & flight tickets easily with a fast,
             secure and user-friendly platform.
           </p>
@@ -26,7 +34,7 @@ const Footer = () => {
   
          {/* Column 2 – Quick Links */}
         <div>
-          <h3 className="text-lg font-bold mb-3 text-[#1c1f1c]">Quick Links</h3>
+          <h3 className="text-lg font-bold mb-3 text-[#1c1f1c] dark:text-white">Quick Links</h3>
           <ul className="space-y-2 text-sm font-semibold">
             <li><Link to="/" className="hover:text-[#1581BF] duration-200">Home</Link></li>
             <li><Link to="/all-tickets" className="hover:text-[#1581BF] duration-200">All Tickets</Link></li>
@@ -37,7 +45,7 @@ const Footer = () => {
 
         {/* Column 3 – Contact Info */}
         <div>
-          <h3 className="text-lg font-bold mb-3 text-[#1c1f1c]">Contact Info</h3>
+          <h3 className="text-lg font-bold mb-3 text-[#1c1f1c] dark:text-white">Contact Info</h3>
           <ul className="space-y-2 text-sm font-semibold">
             <li>Email: support@ticketbari.com</li>
             <li>Phone: +880 1700-000000</li>
@@ -49,7 +57,7 @@ const Footer = () => {
 
         {/* Column 4 – Payment Methods */}
         <div>
-          <h3 className="text-lg font-bold mb-3 text-[#1c1f1c]">Payment Methods</h3>
+          <h3 className="text-lg font-bold mb-3 text-[#1c1f1c] dark:text-white">Payment Methods</h3>
           <div className="flex items-center gap-3 mt-2">
            <p><FaCcStripe size={30}/></p>
            <p><BsPaypal size={30}/></p>
@@ -62,7 +70,7 @@ const Footer = () => {
    
 
       {/* Bottom Bar */}
-      <div className="border-t bg-white/40 backdrop-blur py-4 text-center text-sm font-semibold text-gray-700">
+   <div className="border-t border-gray-300/50 dark:border-gray-700 bg-white/40 dark:bg-gray-900/80 backdrop-blur py-4 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">
         © 2026 TicketBari. All rights reserved.
       </div>
     </footer>

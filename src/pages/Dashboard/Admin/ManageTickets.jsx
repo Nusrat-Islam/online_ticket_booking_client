@@ -41,7 +41,7 @@ const ManageTickets = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-6">Manage Tickets</h2>
+      <h2 className="text-2xl font-semibold mb-6 dark:text-base-200">Manage Tickets</h2>
 
       <div className="overflow-x-auto rounded-xl shadow">
         <table className="table table-zebra w-full min-w-[900px]">
@@ -70,7 +70,7 @@ const ManageTickets = () => {
               </tr>
             )}
 
-            {tickets.map(ticket => (
+            {tickets?.map(ticket => (
               <tr key={ticket._id}>
                 <td>
                   <img src={ticket.image} alt={ticket.title} className="w-16 h-16 object-cover rounded" />

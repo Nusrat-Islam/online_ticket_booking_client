@@ -47,11 +47,11 @@ const ManageUsers = () => {
 
   if(isLoading) return <LoadingSpinner></LoadingSpinner>
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <h2 className="text-2xl font-bold mb-6">Manage Users</h2>
+    <div className="p-6 bg-base-100 text-base-content min-h-screen">
+      <h2 className="text-2xl font-bold mb-6 dark:text-base-200">Manage Users</h2>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow rounded-lg overflow-hidden">
+        <table className="min-w-full bg-base-100 text-base-content shadow rounded-lg overflow-hidden">
           <thead className="bg-blue-500 text-white">
             <tr>
               <th className="py-3 px-4 text-left">Name</th>
@@ -62,7 +62,7 @@ const ManageUsers = () => {
           </thead>
               <tbody>
         {users.length > 0 ? (
-          users.map((user) => (
+          users?.map((user) => (
             <tr key={user?._id} className="border-b hover:bg-gray-100">
               <td>{user?.name}</td>
               <td>{user?.email}</td>
@@ -78,7 +78,7 @@ const ManageUsers = () => {
     </button>
   )}
 
-  {/* Make Admin (যদি already admin না হয়) */}
+ 
   {user.role !== "admin" && (
     <button
       onClick={() => handleChangeRole(user._id, "admin")}

@@ -21,13 +21,13 @@ const flightDeals = [
 
 const FlightDeals = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
       <div className="container mx-auto px-4 text-center">
         {/* Headline */}
         <h2 className="text-3xl md:text-4xl font-bold mb-4 primary-font bg-gradient-to-r from-[#1581BF] to-[#00B7B5] bg-clip-text text-transparent">
           Top Flight Deals
         </h2>
-        <p className="text-lg md:text-xl text-black mb-12 drop-shadow-md">
+        <p className="text-lg md:text-xl text-black dark:text-gray-300 mb-12 drop-shadow-md">
           Grab the best offers for your next journey — fly smart, save more!
         </p>
 
@@ -56,16 +56,18 @@ const FlightDeals = () => {
             <SwiperSlide key={flight.id} className="w-80">
               <div className="relative rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 overflow-hidden">
                 {/* Card BG Image + Transparent Overlay */}
-                <div
-                  className="bg-white/20 backdrop-blur-md h-full flex flex-col justify-end rounded-2xl"
-                  style={{
-                    backgroundImage: `url(${flight.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                >
+              
+<div
+  className="bg-base-100 dark:bg-gray-900 backdrop-blur-md min-h-64 flex flex-col justify-end rounded-2xl relative"
+  style={{
+    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.85)), url(${flight.image})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  }}
+>
+
                   {/* Text Overlay */}
-                  <div className="p-6 text-center text-white drop-shadow-lg">
+                  <div className="p-6 text-center text-base-content drop-shadow-lg">
                     <div className="flex items-center justify-center text-blue-600 text-5xl mb-3 animate-bounce">
                     
                     </div>

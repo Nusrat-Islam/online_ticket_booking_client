@@ -34,10 +34,10 @@ const gradients = [
 
 const WhyChooseTicketBari = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
       <div className="container mx-auto px-4 text-center mb-10">
         <h2 className="text-3xl md:text-4xl font-bold  mb-2 bg-gradient-to-r from-[#1581BF] to-[#00B7B5] bg-clip-text text-transparent">Why Choose TicketBari?</h2>
-        <p className="text-black text-lg">Discover why millions trust TicketBari for their travel needs</p>
+        <p className="text-black text-lg dark:text-gray-300 ">Discover why millions trust TicketBari for their travel needs</p>
       </div>
 
       <Swiper
@@ -61,7 +61,9 @@ const WhyChooseTicketBari = () => {
         {reasons.map((reason, index) => (
           <SwiperSlide key={reason.id}>
             <div
-              className={`rounded-2xl w-full h-55 shadow-2xl p-6 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 bg-gradient-to-r ${gradients[index % gradients.length]} text-white`}
+              
+className={`rounded-2xl w-full h-55 shadow-xl p-6 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 bg-gradient-to-r ${gradients[index % gradients.length]} dark:from-gray-800 dark:to-gray-900 text-white`}
+
             >
               {/* Image Icon */}
               <div className="w-30 h-30 ">

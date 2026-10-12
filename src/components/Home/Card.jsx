@@ -4,7 +4,7 @@ import React from "react";
 
 const Card = ({ ticket }) => {
   return (
-    <div className="w-full bg-white rounded-2xl shadow-lg shadow-blue-400 border overflow-hidden">
+    <div className="w-full h-full flex flex-col bg-base-100 text-base-content rounded-2xl shadow-lg shadow-blue-400 border overflow-hidden">
 
       {/* IMAGE – FULL WIDTH */}
       <img
@@ -14,22 +14,22 @@ const Card = ({ ticket }) => {
       />
 
       {/* CONTENT */}
-      <div className="p-4 space-y-4">
+      <div className="p-4 space-y-4 flex flex-col flex-1">
 
         {/* TITLE */}
-        <h2 className="text-lg font-bold text-gray-900">
+        <h2 className="text-lg font-bold text-base-content">
           {ticket.title}
         </h2>
 
         {/* ROUTE */}
-        <p className="text-gray-700 flex items-center justify-center gap-2">
+        <p className="text-base-content flex items-center justify-center gap-2">
           <span className="font-semibold">{ticket.from}</span>
           <ArrowRight size={18} />
           <span className="font-semibold">{ticket.to}</span>
         </p>
 
         {/* TRANSPORT */}
-        <p className="text-sm text-gray-500 flex items-center justify-center gap-1">
+        <p className="text-sm text-base-content/70 flex items-center justify-center gap-1">
           <Plane size={18} /> {ticket.transport}
         </p>
 
@@ -41,7 +41,7 @@ const Card = ({ ticket }) => {
 
           <div className="">
             <p >Price(per unit):</p>
-            <p className="text-xl font-bold text-blue-700">
+            <p className="text-xl font-bold text-blue-500">
               USD {ticket.price}
             </p>
           </div>
@@ -59,7 +59,7 @@ const Card = ({ ticket }) => {
           </div>
 
           <div className="flex items-center gap-2">
-            <p className="text-gray-500">Time</p>
+            <p className="text-base-content/70">Time</p>
             <p className="font-semibold">{ticket.time}</p>
           </div>
 
@@ -70,7 +70,7 @@ const Card = ({ ticket }) => {
           {ticket.perks?.map((perk, idx) => (
             <span
               key={idx}
-              className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full"
+              className="px-2 py-1 bg-base-200 text-base-content text-xs rounded-full"
             >
             {perk}
             </span>
@@ -78,16 +78,10 @@ const Card = ({ ticket }) => {
         </div>
 
         {/* BUTTON (UNCHANGED STYLE) */}
-                    <Link to={`/ticket/${ticket._id}`} className="btn block w-full text-center  text-white py-3 rounded-lg font-semibold ">
-  <div className="wrapper">
-    <div className="flower flower1"><div className="petal"></div><div className="petal two"></div></div>
-    <div className="flower flower2"><div className="petal"></div><div className="petal three"></div></div>
-    <div className="flower flower3"><div className="petal"></div><div className="petal four"></div></div>
-    <div className="flower flower4"><div className="petal"></div><div className="petal two"></div></div>
-    <div className="flower flower5"><div className="petal"></div><div className="petal three"></div></div>
-    <div className="flower flower6"><div className="petal"></div><div className="petal four"></div></div>
-    <span className="text text-xl">See Details</span>
-  </div>
+                    <Link to={`/ticket/${ticket._id}`} className="w-full rounded-lg bg-gradient-to-r from-sky-600 to-cyan-500 px-4 py-2.5 text-sm font-bold text-white shadow-md transition duration-300 hover:from-sky-700 hover:to-cyan-600 disabled:opacity-60 flex items-center justify-center">
+ 
+    <span className="text text-md" >See Details</span>
+  
 </Link> 
       </div>
     </div>

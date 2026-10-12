@@ -73,7 +73,7 @@ useEffect(() => {
 
   return (
     <Container>
-      <p className='mt-20 text-3xl font-bold text-blue-400 text-center'>All Tickets</p>
+      <p className='mt-20 text-3xl font-bold text-blue-600 text-center'>All Tickets</p>
 
       {/* Search, Filter, Sort */}
       <div className="pt-16 mb-6 flex flex-col md:flex-row gap-3">
@@ -143,7 +143,7 @@ useEffect(() => {
  
   gap-6'>
         {currentTickets.length > 0 ? (
-          currentTickets.map(ticket => <Card key={ticket._id} ticket={ticket} />)
+          currentTickets?.map(ticket => <Card key={ticket._id} ticket={ticket} />)
         ) : (
           <p className="text-center text-gray-500 col-span-full">No tickets found</p>
         )}

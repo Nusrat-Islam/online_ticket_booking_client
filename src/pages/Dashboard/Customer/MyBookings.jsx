@@ -21,7 +21,7 @@ console.log(tickets)
   <h4 className='text-center text-3xl font-bold text-blue-400 mt-10 mb-7'>My Bookings</h4>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 {
-  tickets.map(ticket => <Bookedtickets ticket={ticket}></Bookedtickets>)
+  tickets?.map(ticket => <Bookedtickets ticket={ticket}></Bookedtickets>)
 }
     </div>
 </div>
